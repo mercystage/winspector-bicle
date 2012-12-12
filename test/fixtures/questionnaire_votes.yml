@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  questionnaire_id: MyString
+  option_id: MyString
+  option_text: MyString
+
+two:
+  questionnaire_id: MyString
+  option_id: MyString
+  option_text: MyString
