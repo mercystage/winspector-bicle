@@ -1,0 +1,131 @@
+<h1>特警ウインスペクター</h1>
+ようこそ！ <%= @user.nick_name %> 隊員！
+<input type="button" id="otms_button" value="おためしボタン">
+<div class="portal">
+  <h2>Tweet</h2>
+  <div id="test-div">ここがかわるはず</div>
+  <div class="tweet">
+    <div class="form" id="new-tweet">
+      <%= form_tag(:action => "tweet") do%>
+          <div id="tweet-form">
+            <%= text_area_tag 'tweet_text', '', size: "40x4" %><br>
+            <%= submit_tag "つぶやく"%>
+          </div>
+      <% end %>
+    </div>
+    <div id="timeline">
+      <table id="tweet-tl-table">
+        <tbody>
+            <% @tweets.each do |tweet| %>
+                <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+                  <td>
+                    <%= User.find_by_user_code(tweet.user_code).nick_name %><br>
+                    <%= tweet.tweet_text %><br>
+                    <%= tweet.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                  </td>
+                </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= form_tag '/portal/gettweet',id: 'gettweet_form',remote: true do %>
+        <%= submit_tag "よみこむ" ,{id: "gettweet_button"}%>
+        <%= hidden_field_tag :offset, '20',id:'tweet_offset' %>
+    <% end %>
+
+  </div>
+  <h2>最近投稿された写真</h2>
+  <div class="photoframe">
+    <div class="thumb">
+      <% @photoframes.each do |photoframe| %>
+        <%= link_to image_tag(photoframe.image_url), 'photoframe/detail', id: photoframe %>
+      <% end %>
+    </div>
+  </div>
+  <h2>直近のイベント</h2>
+  <div class="eventcalendar">
+    <div class="recently">
+      ここにイベントカレンダーをのせよう
+    </div>
+    <div class="form">
+      ここにイベント登録フォームをのせよう
+    </div>
+  </div>
+  <h2>家庭内総選挙</h2>
+  <div class="questionnaire">
+    <div class="form" id="vote">
+      <table>
+        <% @questionnaires.each do |questionnaire| %>
+            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+              <td>
+                <%= questionnaire.title %>
+              </td>
+              <td>
+                <%= questionnaire.description %>
+              </td>
+              <td>
+                <%= questionnaire.end_date %>
+              </td>
+              <td>
+                <% questionnaire.questionnaire_votes.each do |vote| %>
+                  <%= vote.option_text %>
+                <% end %>
+              </td>
+
+            </tr>
+        <% end %>
+      </table>
+    </div>
+    <div id="newvote">
+      <%= link_to "新しい選挙", controller: 'questionnaire', action: 'index' %>
+    </div>
+  </div>
+  <h2>つながりを作るゾーン</h2>
+  <div id="relation" class="contents">
+    <h2>つながり申請をします</h2>
+      <div class="form" id="relation-create">
+        <%= form_tag '/relation/create', id: 'connect_form', remote:true do %>
+            <div id="relation-create-form">
+              <%= text_field_tag 'target_user_code', '', {size: 10} %>
+              <%= select_tag :relation_type, options_for_select(@relation_type) %>
+              <%= submit_tag "つながる" %>
+            </div>
+        <% end %>
+      </div>
+    <h2>つながり承認します</h2>
+    <div class="form" id="relation-accept">
+      ここに承認フォームをつくろう
+      <table id="pre-relation-list-table">
+        <tr>
+          <th>User code</th>
+          <th>Nick name</th>
+        </tr>
+        <% @relations.each do |relation| %>
+            <tr>
+              <td><%= relation.target_user_code %></td>
+              <td><%= User.find_by_user_code(relation.target_user_code).nick_name%></td>
+              <td><%= RelationStatus.find_by_status_code(relation.relation_status_code).status_name %></td>
+            </tr>
+        <% end %>
+
+        <tr>
+          <th>User code</th>
+          <th>Nick name</th>
+        </tr>
+        <%= render partial: 'portal/pre_relation', collection: @pre_relations %>
+      </table>
+    </div>
+    <%= form_tag '/portal/prerelations',id: 'pre_relationlist_form',remote: true do %>
+        <%= submit_tag "よみこむ" ,{id: "pre_relations_button"}%>
+        <%= hidden_field_tag :offset, '20',id:'relationlist_offset' %>
+    <% end %>
+    <h2>今のところのつながり状況です</h2>
+    <div class="information-list" id="relation-list">
+      <table id="relation-list-table"></table>
+    </div>
+    <%= form_tag '/portal/relations',id: 'relationlist_form',remote: true do %>
+        <%= submit_tag "よみこむ" ,{id: "relations_button"}%>
+        <%= hidden_field_tag :offset, '20',id:'relationlist_offset' %>
+    <% end %>
+  </div>
+</div><!-- end portal -->

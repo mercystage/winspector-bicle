@@ -1,0 +1,31 @@
+<h1>特警ウィンスペクター</h1>
+<div class="top">
+<div class="head">
+<div class="message">
+<% if @winspector %>
+    <p id="notice"><%= @winspector %></p>
+<% end %>
+<% if flash[:alert] %>
+  <p id="alert"><%= flash[:alert] %></p>
+<% end %>
+</div>
+<div class="image">
+  <%= image_tag('winspector.jpg') %>
+</div>
+</div>
+<div class="login-form">
+  <%= form_tag(:action => "login") do%>
+      <div class="field">
+        <%= label_tag 'id' %>
+        <%= text_field_tag 'user_code' %>
+      </div>
+      <div class="field">
+        <%= label_tag 'password' %>
+        <%= text_field_tag 'password' %>
+      </div>
+      <div class="actions">
+        <%= submit_tag "出動" %>
+      </div>
+  <% end %>
+</div>
+</div>

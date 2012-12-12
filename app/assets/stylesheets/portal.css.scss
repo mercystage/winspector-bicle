@@ -1,0 +1,69 @@
+// Place all the styles related to the portal controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.portal {
+  .tweet {
+    background-color: #eebbcb;
+    border: 5px solid #000000;
+    margin: 5px;
+    #gettweet_button{
+      display: none;
+    }
+
+    #new-tweet {
+      margin-left: 20px;
+      margin-bottom: 5px;
+    }
+    #timeline {
+      height: 400px;
+      width: 400px;
+      margin-left: 20px;
+      margin-bottom: 10px;
+      overflow-x: auto;
+      overflow-y: scroll;
+      #tweet-tl-table {
+        border: 5px;
+        border-color: #708090;
+        .list_line_odd td {
+          border-width: 1px;
+          border-color: #b0c4de;
+          background-color: #f0f8ff;
+        }
+
+        .list_line_even td {
+          border-width: 1px;
+          border-color: #b0c4de;
+          background-color: #e6e6fa;
+        }
+      }
+    }
+  }
+
+  .photoframe {
+    background-color: #c0a2c7;
+    border: 5px solid #000000;
+    margin: 5px;
+    img {
+      width: 10%;
+      height: 10%;
+    }
+  }
+
+  .eventcalendar {
+    background-color: #1e50a2;
+    border: 5px solid #000000;
+    margin: 5px;
+  }
+
+  .questionnaire {
+    background-color: #b9d08b;
+    border: 5px solid #000000;
+    margin: 5px;
+  }
+
+  #relation {
+    background-color: #b9d08b;
+    border: 5px solid #000000;
+    margin: 5px;
+  }
+}

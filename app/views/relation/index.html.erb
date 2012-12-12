@@ -1,0 +1,28 @@
+<h1>つながりを作りましょう</h1>
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+<div id="relation-list">
+<table>
+  <tr>
+    <th>User code</th>
+    <th>Nick name</th>
+  </tr>
+
+  <% @relations.each do |relation| %>
+      <tr>
+        <td><%= relation.target_user_code %></td>
+        <td><%= User.find_by_user_code(relation.target_user_code).nick_name%></td>
+      </tr>
+  <% end %>
+</table>
+</div>
+<div class="form" id="relation-create">
+  <%= form_tag(action: "create") do %>
+      <div id="relation-create-form">
+        <%= text_field_tag 'target_user_code', '', {size: 10} %>
+        <%= select_tag :relation_type, options_for_select(@relation_type) %>
+        <%= submit_tag "つながる" %>
+      </div>
+  <% end %>
+</div>

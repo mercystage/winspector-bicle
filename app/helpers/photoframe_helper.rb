@@ -1,0 +1,2 @@
+module PhotoframeHelper
+end

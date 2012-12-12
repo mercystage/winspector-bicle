@@ -1,0 +1,9 @@
+<% tweets.each do |tweet| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td>
+        <%= User.find_by_user_code(tweet.user_code).nick_name %><br>
+        <%= tweet.tweet_text %><br>
+        <%= tweet.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+      </td>
+    </tr>
+<% end %>

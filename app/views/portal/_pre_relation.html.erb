@@ -1,0 +1,1 @@
+<tr class="<%= cycle('list_line_odd', 'list_line_even')%>"><td><%= pre_relation.target_user_code %></td><td><%= User.find_by_user_code(pre_relation.target_user_code).nick_name%></td><td><%= RelationStatus.find_by_status_code(pre_relation.relation_status_code).status_name %></td></tr>

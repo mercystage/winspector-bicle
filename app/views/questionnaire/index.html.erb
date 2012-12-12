@@ -1,0 +1,21 @@
+# -*- coding:utf-8 -*-
+<h1>新しく選挙を始めます</h1>
+<div class="form" id="newquestionnaire">
+  <%= form_tag(:action => "new") do%>
+      <div id="newquestionnaire-form">
+        <%= text_field_tag 'title' %>
+        <ol>
+          <li>
+            候補１：<%= text_field_tag 'option1' %>
+          </li>
+          <li>
+            候補２：<%= text_field_tag 'option2' %>
+          </li>
+          <li>
+            候補３：<%= text_field_tag 'option3' %>
+          </li>
+        </ol>
+        <%= submit_tag "新しい選挙"%>
+      </div>
+  <% end %>
+</div>
