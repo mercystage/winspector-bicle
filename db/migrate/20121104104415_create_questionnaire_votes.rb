@@ -1,6 +1,6 @@
 class CreateQuestionnaireVotes < ActiveRecord::Migration
   def change
-    drop_table :questionnaire_votes
+    #drop_table :questionnaire_votes
     create_table :questionnaire_votes do |t|
       t.integer :questionnaire_id
       t.string :option_id

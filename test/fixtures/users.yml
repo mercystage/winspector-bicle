@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  user_code: MyString
-  nick_name: MyString
-  password: MyString
+  user_code: test01
+  nick_name: TEST01
+  password: test01
 
 two:
-  user_code: MyString
-  nick_name: MyString
-  password: MyString
+  user_code: test02
+  nick_name: TEST02
+  password: test02

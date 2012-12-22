@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20121206053803) do
   end
 
   create_table "questionnaire_votes", :force => true do |t|
-    t.string   "questionnaire_id"
+    t.integer  "questionnaire_id"
     t.string   "option_id"
     t.string   "option_text"
     t.datetime "created_at",       :null => false

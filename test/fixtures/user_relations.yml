@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  user_code: MyString
-  target_user_code: MyString
+  user_code: test01
+  target_user_code: test02
   relationship_cd: 1
   relation_level: 1
 
 two:
-  user_code: MyString
-  target_user_code: MyString
-  relationship_cd: 1
-  relation_level: 1
+  user_code: test02
+  target_user_code: test01
+  relationship_cd: 2
+  relation_level: 2
