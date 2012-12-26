@@ -13,8 +13,12 @@ Winspector::Application.routes.draw do
 
   get "questionnaire/vote"
 
-  get "photoframe/detail"
+  get "photoframe/folder"
 
+  post "photoframe/get_contents"
+  post "photoframe/photohome"
+  get "photoframe/photohome"
+  get "photoframe/detail"
   get "photoframe/regist"
 
   get "portal/index"

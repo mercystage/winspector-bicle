@@ -1,0 +1,4 @@
+<h1>フォルダ詳細</h1>
+  <% @folder.each do |fld| %>
+      <%= link_to fld.name, 'folder', id: fld.id, name: fld.name %>
+  <% end %>

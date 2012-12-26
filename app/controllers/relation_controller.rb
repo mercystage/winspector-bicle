@@ -30,7 +30,7 @@ class RelationController < ApplicationController
       flash[:notice] = 'そんなやつはいない'
     # 既に登録済でないかチェック
     elsif UserRelation.where('user_code = ? AND target_user_code = ?', user.user_code, params[:target_user_code]).exists?
-      flash[:notice] = 'すでにつながっている'
+      flash[:notice] = 'おまえはすでにつながっている'
     else
       UserRelation.create(user_code: user.user_code, target_user_code: params[:target_user_code], relationship_cd: 1, relation_level: 1, relation_status_code: '2').save
       UserRelation.create(user_code: params[:target_user_code], target_user_code: user.user_code, relationship_cd: 1, relation_level: 1, relation_status_code: '3').save

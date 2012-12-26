@@ -11,12 +11,54 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121206053803) do
+ActiveRecord::Schema.define(:version => 20121223162458) do
+
+  create_table "folders", :force => true do |t|
+    t.string   "user_id"
+    t.string   "name"
+    t.integer  "f_no"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "others_comments", :force => true do |t|
+    t.string   "photo_id"
+    t.string   "user_id"
+    t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "photo_likes", :force => true do |t|
+    t.string   "photo_id"
+    t.string   "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "photo_tags", :force => true do |t|
+    t.string   "photo_id"
+    t.string   "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "photoframes", :force => true do |t|
     t.string   "user_code"
     t.string   "image_url"
     t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "photos", :force => true do |t|
+    t.string   "user_id"
+    t.string   "folder_id"
+    t.string   "category"
+    t.string   "photo_url"
+    t.string   "open_range"
+    t.text     "comment"
+    t.integer  "plays"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

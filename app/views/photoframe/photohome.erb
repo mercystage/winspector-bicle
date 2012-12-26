@@ -1,0 +1,12 @@
+<div>
+  <div id='get_contents'>
+      <%= render 'show_folders' %>
+  </div>
+  <div>
+    <%= form_tag({ action: :get_contents}, id: 'sort_form', remote:true) do %>
+        <% sort_options = [['フォルダ名','name'], ['作成順', 'f_no']]  %>
+        <%= select_tag 'sort', options_for_select(sort_options, selected: '作成順') %>
+        <%= submit_tag 'ならびかえ' %>
+    <% end %>
+  </div>
+</div>
