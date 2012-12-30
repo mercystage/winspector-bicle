@@ -1,40 +1,32 @@
 Winspector::Application.routes.draw do
   post "relation/index"
-
   post "relation/create"
-
   get "relation/edit"
 
   get "questionnaire/index"
-
   post "questionnaire/new"
-
   get "questionnaire/edit"
-
   get "questionnaire/vote"
-
-  get "photoframe/folder"
 
   post "photoframe/get_contents"
   post "photoframe/photohome"
+  post "photoframe/upload_p"
   get "photoframe/photohome"
+  get "photoframe/folder"
   get "photoframe/detail"
   get "photoframe/regist"
 
   get "portal/index"
-
   post "portal/tweet"
-
   post "portal/gettweet"
-
   post "portal/relations"
-
   post "portal/prerelations"
 
   resources :users
 
-  get "top/index"
+  resources :photos
 
+  get "top/index"
   post "top/login"
 
   # The priority is based upon order of creation:

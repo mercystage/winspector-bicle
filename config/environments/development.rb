@@ -36,4 +36,17 @@ Winspector::Application.configure do
   config.assets.debug = true
 
   config.time_zone = 'Tokyo'
+
+  # configuration of Paperclip
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+    # Output Setting
+    config.paperclip_defaults =
+        {:storage => :filesystem,
+          :path => ":rails_root/public/photos/:id/:style/:basename.:extension",
+          :url => ":rails_root/public/photos/:id/:style/:basename.:extension"}
+         # :id_sha1はSHA1ランダム文字列のシンボル :urlをうまく動作できなかったので簡素化
+         # :attachmentはこの環境ではPaperclip用カラムのassetの複数形assetsが入る
+         # initializer/paperclip_init.rb も参照
+         #:path => ":rails_root/app/:attachment/:id_sha1/:id/:style/:basename.:extension",
+         #:url => ":rails_root/app/:attachment/:id_sha1/:id/:style/:basename.:extension"}
 end

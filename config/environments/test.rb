@@ -34,4 +34,8 @@ Winspector::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # configuration of Paperclip
+  #Paperclip.options[:command_path] = "/usr/local/bin/"
+  #connect for AWS S3
 end

@@ -1,4 +1,10 @@
 folder_detail
 <br>
 <br>
-<%= image_tag 'winspector.jpg' %>
+
+<%= form_for @photo, html: { multipart: true } do |f| %>
+    <%= f.file_field :asset %>
+    <%= f.submit "アップロード" %>
+<% end %>
+
+<%= render 'detail' %>
