@@ -1,10 +1,24 @@
-folder_detail
-<br>
-<br>
+<h1>フォルダ詳細</h1>
+<hr>
+<div class="container">
+  <div class="text-info span2 lead">
+    <%= @folder_param[:fld_name] %>
+  </div>
+  <br>
+  <hr>
+</div>
+<div class="container">
+    <%= form_for @photo, html: { multipart: true } do |f| %>
+        <%= f.file_field :asset %>
+        <%= hidden_field_tag 'fld_id', @folder_param[:fld_id] %>
+        <%= f.submit "アップロード" %>
+    <% end %>
 
-<%= form_for @photo, html: { multipart: true } do |f| %>
-    <%= f.file_field :asset %>
-    <%= f.submit "アップロード" %>
-<% end %>
-
-<%= render 'detail' %>
+    <%= render 'detail' %>
+</div>
+<hr>
+<div class="container">
+    <div class="btn-info span3" style="text-align: center;">
+        <%= link_to '写真／動画機能ホーム へ戻る', 'photohome' %>
+    </div>
+</div>

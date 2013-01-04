@@ -1,4 +1,8 @@
 Winspector::Application.routes.draw do
+  get "folders/create"
+  get "folders/delete"
+  post "folders/change_name"
+
   post "relation/index"
   post "relation/create"
   get "relation/edit"
@@ -12,6 +16,8 @@ Winspector::Application.routes.draw do
   post "photoframe/photohome"
   post "photoframe/upload_p"
   get "photoframe/photohome"
+  get "photoframe/get_contents"
+  get "photoframe/get_folder_thumb"
   get "photoframe/folder"
   get "photoframe/detail"
   get "photoframe/regist"
@@ -24,6 +30,9 @@ Winspector::Application.routes.draw do
 
   resources :users
 
+  resources :folders do
+    resources :photos
+  end
   resources :photos
 
   get "top/index"

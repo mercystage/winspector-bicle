@@ -30,3 +30,5 @@
 #ER図はサイズ削減のため除去しておく
 /doc/*.svg
 
+#アップロード画像（development環境）はpushしない
+/public/photos

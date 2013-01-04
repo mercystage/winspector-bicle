@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226081906) do
+ActiveRecord::Schema.define(:version => 20130101070650) do
 
   create_table "folders", :force => true do |t|
     t.string   "user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20121226081906) do
     t.integer  "f_no"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "thumb"
   end
 
   create_table "others_comments", :force => true do |t|
@@ -53,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20121226081906) do
 
   create_table "photos", :force => true do |t|
     t.string   "user_id"
-    t.string   "folder_id"
+    t.integer  "folder_id"
     t.string   "category"
     t.string   "photo_url"
     t.string   "open_range"

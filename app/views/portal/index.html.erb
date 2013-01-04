@@ -37,8 +37,8 @@
   <%= link_to '写真／動画', '/photoframe/photohome' %>
   <div class="photoframe">
     <div class="thumb">
-      <% @photoframes.each do |photoframe| %>
-        <%= link_to image_tag(photoframe.image_url), '/photoframe/detail', id: photoframe %>
+      <% @photos.each do |pho| %>
+        <%= link_to image_tag("/photos/" + pho.id.to_s + "/thumb/" + pho.asset_file_name), '/photos/detail', id: pho.id %>
       <% end %>
     </div>
   </div>

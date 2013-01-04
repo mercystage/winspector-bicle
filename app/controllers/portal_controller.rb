@@ -25,7 +25,7 @@ class PortalController < ApplicationController
 
     @tweets = Tweet.where("user_code in(?)", relation_user_codes).order("created_at DESC").offset(0).limit(20)
 
-    @photoframes = Photoframe.all
+    @photos = Photo.find_all_by_user_id(session[:login_user].id)
     @questionnaires = Questionnaire.all
   end
 

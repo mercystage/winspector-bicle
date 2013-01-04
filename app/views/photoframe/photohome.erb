@@ -1,12 +1,26 @@
-<div>
+<h1>写真／動画機能ホーム</h1>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="span4">
+      <!-- 下のform_tagのaction周りには、{}が無いと動作しましせんので注意 -->
+      <%= form_tag({action: :get_contents}, id: 'sort_form', remote:true) do %>
+          <% sort_options = [['フォルダ名','name'], ['作成順', 'f_no']]  %>
+          <%= select_tag 'sort', options_for_select(sort_options, selected: '作成順') %>
+          <%= submit_tag 'ならびかえ' %>
+      <% end %>
+    </div>
+    <div class="span4">
+      <%= form_tag '/folders', remote:true, id: 'new_folder' do %>
+          <%= text_field_tag('new_folder_name', 'ここにフォルダ名を入力してください', class: 'input') %>
+          <%= submit_tag 'フォルダ作成', id: 'folder_create_button' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container">
   <div id='get_contents'>
       <%= render 'show_folders' %>
-  </div>
-  <div>
-    <%= form_tag({ action: :get_contents}, id: 'sort_form', remote:true) do %>
-        <% sort_options = [['フォルダ名','name'], ['作成順', 'f_no']]  %>
-        <%= select_tag 'sort', options_for_select(sort_options, selected: '作成順') %>
-        <%= submit_tag 'ならびかえ' %>
-    <% end %>
   </div>
 </div>

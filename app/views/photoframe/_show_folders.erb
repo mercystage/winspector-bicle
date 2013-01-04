@@ -1,4 +1,30 @@
-<h1>フォルダ詳細</h1>
-  <% @folder.each do |fld| %>
-      <%= link_to fld.name, 'folder', id: fld.id, name: fld.name %>
+  <% @my_folders.each do |fld| %>
+    　<ul class='thumbnail span3' style="text-align: center;">
+        <ul id="menu">
+          <li class="menu_img">
+            <%= image_tag 'menu_icon.png' %>
+            <ul>
+              <li>フォルダ名変更
+               <ul>
+                 <li>
+                   <br>
+                   <%= form_tag({:controller => 'folders', :action => 'change_name'}, remote:true) do %>
+                     <%= text_field_tag 'new_fld_name', '' %>
+                     <%= hidden_field_tag 'fld', value = fld.id %>
+                     <%= submit_tag '変更' %>
+                   <% end %>
+                 </li>
+               </ul>
+              </li>
+              <li><a href="#">公開範囲変更</a></li>
+              <li><a href="#">一括移動</a></li>
+              <li><a href="#">フォルダ削除</a></li>
+            </ul>
+            <br>
+          </li>
+        </ul>
+        <%= image_tag url_for(:action => "get_folder_thumb", :fld => fld) %>
+        <br>
+        <%= link_to fld.name, {:action => 'folder', :method => 'post', :fld => fld} %>
+      </ul>
   <% end %>

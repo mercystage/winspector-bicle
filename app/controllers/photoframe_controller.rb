@@ -1,29 +1,47 @@
 class PhotoframeController < ApplicationController
-  helper_method :detail_hlp
-
   def get_contents
     @user = session[:login_user]
-    @photos = Photo.where(:user_id => @user.id).order('created_at')
+    if nil != params[:fld]
+      @photos = Photo.where(:user_id => @user.id, :folder_id => params[:fld]).order('created_at')
+    else
+      @photos = Photo.where(:user_id => @user.id).order('created_at')
+    end
 
+    order_sort_folders()
+
+    if 0 != @photos.count
+      @photos.each do |pho|
+        if pho.id != nil
+          pho.photo_url = '/photos/' + pho.id.to_s + '/'
+        end
+      end
+      @style_url = {
+          medium: 'medium/',
+          thumb: 'thumb/',
+          original: 'original/'
+      }
+    end
+  end
+
+  def order_sort_folders
     sort = params[:sort]
     if sort == nil
-        @folder = Folder.where(:user_id => @user.id).order('f_no')
+      @my_folders = Folder.where(:user_id => @user.id).order('f_no')
     else
-        @folder = Folder.where(:user_id => @user.id).order(sort)
+      @my_folders = Folder.where(:user_id => @user.id).order(sort)
     end
+  end
 
-    @photos.each do |pho|
-      if pho.id != nil
-        pho.photo_url = '/photos/' + pho.id.to_s + '/'
-      end
+  def get_folder_thumb
+    folder_img = Magick::Image.read('app/assets/images/back_folder.png').first
+    @photos = Photo.where(:folder_id => params[:fld])
+    if 0 < @photos.count
+      thumb = Magick::Image.read('public/photos/' + @photos.first.id.to_s + '/thumb/' + @photos.first.asset_file_name).first
+      folder_img.composite!(thumb, Magick::CenterGravity, Magick::OverCompositeOp)
+      send_data(folder_img.to_blob)
+    else
+      send_data(folder_img.to_blob)
     end
-    @style_url = {
-        medium: 'medium/',
-        thumb: 'thumb/',
-        original: 'original/'
-    }
-    logger.info(@photos.count)
-    logger.info('##############')
   end
 
   def photohome
@@ -32,6 +50,10 @@ class PhotoframeController < ApplicationController
 
   def folder
     get_contents
+    @folder_param = {
+        fld_id: params[:fld],
+      fld_name: @my_folders.find(params[:fld]).name
+    }
     @photo = Photo.new
   end
 

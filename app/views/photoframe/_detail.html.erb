@@ -1,5 +1,5 @@
 <% @photos.each do |pho| %>
-    <div class="image">
+    <div class="span2 thumbnail">
       <%= image_tag(pho.photo_url + @style_url[:thumb] + pho.asset_file_name) %>
     </div>
 <% end %>

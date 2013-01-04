@@ -22,8 +22,10 @@ end
 
 gem 'jquery-rails'
 
+# For Photo/Movies
 gem 'paperclip', '~> 3.4'
 gem 'aws-sdk', '~> 1.8'
+gem 'rmagick', '~> 2.13'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
