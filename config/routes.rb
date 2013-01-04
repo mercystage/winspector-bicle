@@ -16,11 +16,11 @@ Winspector::Application.routes.draw do
   post "photoframe/photohome"
   post "photoframe/upload_p"
   get "photoframe/photohome"
+  get "photoframe/slideshow_all"
   get "photoframe/get_contents"
   get "photoframe/get_folder_thumb"
   get "photoframe/folder"
   get "photoframe/detail"
-  get "photoframe/regist"
 
   get "portal/index"
   post "portal/tweet"

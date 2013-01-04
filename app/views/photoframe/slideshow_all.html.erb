@@ -1,0 +1,13 @@
+<div class="content">
+  <h1>全ファイルスライドショー</h1>
+
+  <div id="galleria">
+    <%= @photos.each do |pho| %>
+    <a href="<%= '/photos/' + pho.id.to_s + "/original/" + pho.asset_file_name %>">
+    <img data-title="<%= pho.asset_file_name %>"
+         data-description="<%= pho.comment %>"
+         src="<%= '/photos/' + pho.id.to_s + '/thumb/' + pho.asset_file_name %>" >
+    </a>
+    <% end %>
+  </div>
+</div>

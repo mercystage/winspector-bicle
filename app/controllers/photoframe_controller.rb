@@ -1,4 +1,6 @@
 class PhotoframeController < ApplicationController
+  layout "slideshow_all", :only => 'slideshow_all'
+
   def get_contents
     @user = session[:login_user]
     if nil != params[:fld]
@@ -48,6 +50,10 @@ class PhotoframeController < ApplicationController
     get_contents
   end
 
+  def slideshow_all
+    @photos = Photo.where(user_id: session[:login_user].id)
+  end
+
   def folder
     get_contents
     @folder_param = {
@@ -57,6 +63,4 @@ class PhotoframeController < ApplicationController
     @photo = Photo.new
   end
 
-  def regist
-  end
 end
