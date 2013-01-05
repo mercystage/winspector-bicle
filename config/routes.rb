@@ -1,6 +1,5 @@
 Winspector::Application.routes.draw do
   get "folders/create"
-  get "folders/delete"
   post "folders/change_name"
 
   post "relation/index"

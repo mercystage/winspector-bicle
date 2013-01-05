@@ -195,7 +195,9 @@ RelationStatus.create(status_code: '2', status_name: '申請中')
 RelationStatus.create(status_code: '3', status_name: '承認中')
 RelationStatus.create(status_code: '4', status_name: '拒否')
 
-Photo.delete_all
-Photo.create(category: '0', comment: 'photo00001', folder_id: '1', open_range: '1',
-             photo_url: 'localhost', plays: '1', user_id:'980190963')
-
+Folder.delete_all
+@users = User.all
+@users.each do |user|
+  Folder.create(f_no: '1', name: 'アップロード', user_id: user.id.to_s)
+  Folder.create(f_no: '2', name: 'ゲッツ！', user_id: user.id.to_s)
+end

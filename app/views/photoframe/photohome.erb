@@ -16,7 +16,8 @@
           <%= submit_tag 'フォルダ作成', id: 'folder_create_button' %>
       <% end %>
     </div>
-    <div class="span2 btn">
+    <div class='span2 btn'> <!-- ボタンがリンクにならない・・・！ -->
+      <%= link_to image_tag('photoframe/slideshow.png', :width => '32px', :height => '32px'), :action => 'slideshow_all' %>
       <%= link_to 'スライドショー', :action => 'slideshow_all' %>
     </div>
   </div>

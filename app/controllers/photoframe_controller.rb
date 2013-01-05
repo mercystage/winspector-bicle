@@ -18,6 +18,7 @@ class PhotoframeController < ApplicationController
         end
       end
       @style_url = {
+          big: 'big/',
           medium: 'medium/',
           thumb: 'thumb/',
           original: 'original/'

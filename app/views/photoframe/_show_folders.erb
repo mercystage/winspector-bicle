@@ -1,4 +1,9 @@
-  <% @my_folders.each do |fld| %>
+<% flash.each do |key, msg| %>
+    <%= content_tag :div, msg, :id => key, :class => 'btn-warning span4' %>
+    <br>
+    <hr>
+<% end %>
+<% @my_folders.each do |fld| %>
     　<ul class='thumbnail span3' style="text-align: center;">
         <ul id="menu">
           <li class="menu_img">
@@ -18,12 +23,22 @@
               </li>
               <li><a href="#">公開範囲変更</a></li>
               <li><a href="#">一括移動</a></li>
-              <li><a href="#">フォルダ削除</a></li>
+              <li>フォルダ削除
+                <ul>
+                  <li>
+                    <br>
+                      <%= button_to('削除', {:controller => 'folders', :action => 'destroy', :id => fld.id},
+                                           :remote => true, :method => :delete,
+                                           :confirm => 'フォルダを削除します。よろしいですか？') %>
+                  </li>
+                 </ul>
+              </li>
             </ul>
             <br>
           </li>
         </ul>
-        <%= image_tag url_for(:action => "get_folder_thumb", :fld => fld) %>
+        <%= link_to image_tag(url_for(:action => "get_folder_thumb", :fld => fld), :border => '0'),
+                              {:action => 'folder', :method => 'post', :fld => fld} %>
         <br>
         <%= link_to fld.name, {:action => 'folder', :method => 'post', :fld => fld} %>
       </ul>

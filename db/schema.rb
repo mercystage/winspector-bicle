@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(:version => 20130101070650) do
   end
 
   create_table "photos", :force => true do |t|
-    t.string   "user_id"
-    t.integer  "folder_id"
+    t.string   "user_id",            :null => false
+    t.integer  "folder_id",          :null => false
     t.string   "category"
     t.string   "photo_url"
     t.string   "open_range"
