@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+  fileupload:
+    add_files: "Add File"
+    start_upload: "Start Upload"
+    cancel_upload: "Cancel Upload"
+    delete_multi: "Multi Delete"

@@ -22,10 +22,25 @@
                </ul>
               </li>
               <li><a href="#">公開範囲変更</a></li>
-              <li><a href="#">一括移動</a></li>
-              <li>フォルダ削除
+              <li>一括移動
                 <ul>
                   <li>
+                    <br>
+                    <%= form_tag({controller: 'folders', action: 'all_move', fld: fld.id, method: 'post'}, remote:true,
+                                 :confirm => 'このフォルダのファイルをすべて指定したフォルダに移動します。よろしいですか？') do %>
+                      <% move_options = Hash.new %>
+                      <% @my_folders.each do |folders| %>
+                        <% move_options.store(folders.name, folders.id) %>
+                      <% end %>
+                      <%= select_tag 'move_to', options_for_select(move_options, selected: @my_folders.first.name) %>
+                      <%= submit_tag '一括移動' %>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+              <li>フォルダ削除
+                <ul>
+                  <li class="span2">
                     <br>
                       <%= button_to('削除', {:controller => 'folders', :action => 'destroy', :id => fld.id},
                                            :remote => true, :method => :delete,
@@ -37,9 +52,10 @@
             <br>
           </li>
         </ul>
-        <%= link_to image_tag(url_for(:action => "get_folder_thumb", :fld => fld), :border => '0'),
-                              {:action => 'folder', :method => 'post', :fld => fld} %>
+        <%= link_to image_tag(url_for(:action => "get_folder_thumb", :fld => fld),  :border => '0'),
+                              {:controller => 'folders', :action => 'detail_upload', :fld => fld}, :method => 'post' %>
         <br>
-        <%= link_to fld.name, {:action => 'folder', :method => 'post', :fld => fld} %>
+        <%= link_to fld.name,
+                    {:controller => 'folders', :action => 'detail_upload', :fld => fld}, :method => 'post' %>
       </ul>
   <% end %>

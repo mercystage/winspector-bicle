@@ -1,6 +1,8 @@
 Winspector::Application.routes.draw do
   get "folders/create"
+  post "folders/detail_upload"
   post "folders/change_name"
+  post "folders/all_move"
 
   post "relation/index"
   post "relation/create"
@@ -14,12 +16,13 @@ Winspector::Application.routes.draw do
   post "photoframe/get_contents"
   post "photoframe/photohome"
   post "photoframe/upload_p"
+  post "photoframe/folder"
   get "photoframe/photohome"
   get "photoframe/slideshow_all"
   get "photoframe/get_contents"
   get "photoframe/get_folder_thumb"
-  get "photoframe/folder"
   get "photoframe/detail"
+  get "photoframe/detail_upload_done"
 
   get "portal/index"
   post "portal/tweet"

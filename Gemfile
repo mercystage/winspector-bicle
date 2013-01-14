@@ -22,10 +22,16 @@ end
 
 gem 'jquery-rails'
 
+# For Twitter-bootstrap-rails
+gem "therubyracer"
+gem 'less-rails', '~> 2.2'
+gem 'twitter-bootstrap-rails', '~> 2.2'
+
 # For Photo/Movies
 gem 'paperclip', '~> 3.4'
 gem 'aws-sdk', '~> 1.8'
 gem 'rmagick', '~> 2.13'
+gem 'jquery-fileupload-rails', '~> 0.4'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

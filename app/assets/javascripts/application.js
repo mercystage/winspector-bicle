@@ -15,4 +15,5 @@
 //= require jquery.bottom-1.0
 //= require portal_test
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require_directory .

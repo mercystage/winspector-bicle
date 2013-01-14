@@ -1,0 +1,10 @@
+/*
+*= require_self
+*= require jquery.fileupload-ui
+*= require bootstrap_and_overrides
+*/
+
+.bar {
+    height: 18px;
+    background: #87cefa;
+}

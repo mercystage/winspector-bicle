@@ -64,4 +64,8 @@ class PhotoframeController < ApplicationController
     @photo = Photo.new
   end
 
+  def detail_upload_done
+    get_contents
+  end
+
 end
