@@ -1,0 +1,70 @@
+<%= javascript_include_tag 'photo_movie/jquery.full_screen' %>
+<%= stylesheet_link_tag 'photo_movie/full_screen' %>
+
+<% @photos.each do |pho| %>
+    <%= form_tag '' do %>
+      <%= hidden_field_tag 'photo_id', pho.id %>
+      <div class="span2 thumbnail" style="text-align: center;">
+          <ul id="menu">
+            <li class="menu_img">
+              <%= image_tag 'menu_icon.png' %>
+              <ul>
+                <li>コメント編集
+                  <ul>
+                    <li>
+                    <br>
+                    <%= form_tag({:controller => 'photos', :action => 'index'},{:remote => true}) do %>
+                        <%= text_field_tag 'new_fld_name', '' %>
+                        <%= submit_tag '変更' %>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">公開範囲変更</a></li>
+              <li>フォルダ移動
+                <ul>
+                  <li>
+                    <br>
+                    <%= form_tag({:controller => 'photos', :action => 'move_to',
+                                  :id => pho.id, :fld_id => @folder_param[:fld_id]},
+                                 {:remote => true}) do %>
+                        <%= submit_tag 'フォルダ移動',
+                                       :confirm => 'このファイルを指定したフォルダに移動します。よろしいですか？' %>
+                        <% move_options = Hash.new %>
+                        <% @my_folders.each do |folders| %>
+                            <% if !folders.id.to_s.eql?((@folder_param[:fld_id]).to_s) %>
+                                <% move_options.store(folders.name, folders.id) %>
+                            <% end %>
+                        <% end %>
+                        <%= select_tag 'move_to',
+                                       options_for_select(move_options,
+                                                          :selected => @my_folders.first.name) %>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+              <li>削除
+                <ul>
+                  <li class="span2">
+                    <br>
+                    <%= button_to('削除', {:controller => 'photos', :action => 'destroy',
+                                          :id => pho.id, :fld_id => @folder_param[:fld_id]},
+                                  {:remote => true, :method => :delete,
+                                   :confirm => 'このファイルを削除します。削除すると戻せませんが、よろしいですか？'}) %>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <br>
+          </li>
+         </ul>
+        <div id=<%= "fsArea-" + pho.id.to_s %> >
+            <%= image_tag('/photos/' + pho.id.to_s + '/thumb/' + pho.asset_file_name) %>
+            <%= hidden_field_tag 'pho_id', pho.id.to_s %>
+        </div>
+      </div>
+        <div id=<%= "bigDiv-" + pho.id.to_s %> >
+        </div>
+    <% end %>
+<% end %>
+<!--<div id="fsArea-1" class='full_screen'>FullScreen</div>-->

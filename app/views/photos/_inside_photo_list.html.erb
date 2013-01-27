@@ -1,0 +1,57 @@
+<% @inside_photos.each do |pho| %>
+      <div class="span2 thumbnail" style="text-align: center; height: 160px;">
+          <ul id="menu">
+            <li class="menu_img">
+              <%= image_tag 'menu_icon.png' %>
+              <ul>
+                <li>コメント編集
+                  <ul>
+                    <li>
+                    <br>
+                    <%= form_tag({:controller => 'photos', :action => 'index'}, {:remote => true}) do %>
+                        <%= text_field_tag 'new_fld_name', '' %>
+                        <%= submit_tag '変更' %>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">公開範囲変更</a></li>
+              <li>フォルダ移動
+                <ul>
+                  <li>
+                    <br>
+                    <%= form_tag({:controller => 'photos', :action => 'move_to', :id => pho.id},
+                                 {:remote => true}) do %>
+                        <%= submit_tag 'フォルダ移動' %>
+                        <% move_options = Hash.new %>
+                        <% @my_fld.each do |folders| %>
+                            <% if !folders.id.to_s.eql?((@fld_param[:fld_id]).to_s) %>
+                                <% move_options.store(folders.name, folders.id) %>
+                            <% end %>
+                        <% end %>
+                        <%= select_tag 'move_to',
+                                       options_for_select(move_options,
+                                                          :selected => @my_fld.first.name,
+                                                          :confirm => 'このファイルを指定したフォルダに移動します。よろしいですか？') %>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+              <li>削除
+                <ul>
+                  <li class="span2">
+                    <br>
+                    <%= button_to('削除', {:controller => 'photos', :action => 'destroy',
+                                  :id => pho.id, :fld_id => @fld_param[:fld_id]},
+                                 {:remote => true, :method => :delete,
+                                  :confirm => 'このファイルを削除します。削除すると戻せませんが、よろしいですか？'}) %>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <br>
+          </li>
+         </ul>
+        <%= image_submit_tag('/photos/' + pho.id.to_s + '/thumb/' + pho.asset_file_name) %>
+      </div>
+<% end %>

@@ -1,0 +1,27 @@
+<div class="content">
+  <b class="span2">全ファイルスライドショー</b>
+  <br>
+  <!-- TODO 戻りがフォルダ詳細（フォルダ名）になってない -->
+  <div align="right"><a href="/portal/init"><%= image_tag "photo_movie/back_to_portal.png" %><h1><!-- フォルダ名 -->フォルダ詳細に戻る</h1></a></div>
+  <span class="span2 btn-info" onclick="slide_show_full_screen()">全画面表示</span>
+  <br>
+</div>
+<div class="content">
+  <div id="galleria">
+    <!-- TODO URL Change to S3 -->
+    <%= @photos.each do |pho| %>
+    <a href="<%= '/photos/' + pho.id.to_s + "/medium/" + pho.asset_file_name %>">
+    <img data-title="<%= pho.asset_file_name %>"
+         data-big="<%= '/photos/' + pho.id.to_s + "/big/" + pho.asset_file_name %>"
+         data-description="<%= pho.caption %>"
+         data-layer="<h2>データレイヤーサンプル</h2><p>サンプルの文章を表示してみます（slide_show.htmlに直打ち）</p>"
+         src="<%= '/photos/' + pho.id.to_s + '/thumb/' + pho.asset_file_name %>" >
+    </a>
+    <% end %>
+    <!-- サンプル 兼 作業用BGM です。適当に変えて楽しんでください。 -->
+    <a href="http://www.youtube.com/watch?v=ymd5qwSmC5w"><span class="video">JoJo!</span></a>
+    <a href="http://www.youtube.com/watch?v=wnrP3jbSZ6o"><span class="video">SAO OP1!</span></a>
+    <a href="http://www.youtube.com/watch?v=8zXclabE-OA"><span class="video">SAO OP2!</span></a>
+    <a href="http://vimeo.com/12309423"><span class="video">Vimeo Sample</span></a>
+  </div>
+</div>
